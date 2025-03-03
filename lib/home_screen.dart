@@ -51,6 +51,14 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/ profile ');
               },
             ),
+            //Map
+            ListTile(
+              leading: Icon(Icons.map_outlined),
+              title: Text("Mapa"),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/ map');
+              },
+            ),
             //Sign Out
             ListTile(
               leading: Icon(Icons.exit_to_app),
@@ -58,7 +66,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/ ');
               },
-            )
+            ),
           ],
         ),
       ),

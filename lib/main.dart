@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab1/map/user_map.dart';
 import 'login_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/ ': (context) => LoginScreen(),
         '/ home ': (context) => HomeScreen(),
+        '/ map' : (context) => UserMap(),
         '/ profile ': (context) => ProfileScreen(),
       },
     );
