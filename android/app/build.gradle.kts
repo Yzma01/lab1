@@ -8,8 +8,7 @@ plugins {
 android {
     namespace = "com.example.lab1"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
-
+    ndkVersion = "28.0.13004108"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -28,7 +27,6 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        resvalue "string", "GOOGLE_MAPS_API_KEY", System.env.GOOGLE_MAPS_API_KEY?:""
     }
 
     buildTypes {

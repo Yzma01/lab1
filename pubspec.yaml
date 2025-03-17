@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_maps_flutter: ^2.2.0 # Para usar Google Maps
+  geocoding: ^2.1.0
   geolocator: ^9.0.2 # Para obtener la ubicación del usuario
   permission_handler: ^10.0.0 # Para manejar permisos de ubicación
 
