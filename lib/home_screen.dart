@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lab1/api/api.dart';
+import 'package:lab1/api/user_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -16,11 +18,19 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          ' Bienvenido a la aplicación! ',
-          style: TextStyle(fontSize: 24),
-        ),
+       body: FutureBuilder<List<dynamic>>(
+        future: requestUsers(), // Llamamos a la API
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No users found'));
+          } else {
+            return UserWidget(users: snapshot.data!);
+          }
+        },
       ),
       //SideBar
       drawer: Drawer(
