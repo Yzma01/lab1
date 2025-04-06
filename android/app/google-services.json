@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1069907107145",
+    "project_id": "labuber-e63cb",
+    "storage_bucket": "labuber-e63cb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069907107145:android:e6dfe4f1e429b939eb4e98",
+        "android_client_info": {
+          "package_name": "com.example.lab1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGEdR4_uAGCzK2IPr8vBnU4dUhZel3lsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,6 +9,13 @@ class HomeScreen extends StatelessWidget {
         title: Text(' Home '),
         actions: [
           IconButton(
+            icon: Icon(Icons.history),
+            tooltip: 'Historial de viajes',
+            onPressed: () {
+              Navigator.pushNamed(context, '/ rides');
+            },
+          ),
+          IconButton(
             icon: Icon(Icons.person),
             onPressed: () {
               Navigator.pushNamed(context, '/ profile ');
