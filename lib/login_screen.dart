@@ -11,19 +11,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() {
     //Login verification
-    if (_usernameController.text.isNotEmpty && _usernameController.text == "yzma" &&
-        _passwordController.text.isNotEmpty && _passwordController.text == "0101") {
+    if (_usernameController.text.isNotEmpty &&
+        _usernameController.text == "fabiux" &&
+        _passwordController.text.isNotEmpty &&
+        _passwordController.text == "0101") {
       Navigator.pushReplacementNamed(context, '/ home ');
     } else {
       //Error message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(' Por favor , ingrese usuario y contraseña '),
-        ),
+        SnackBar(content: Text(' Por favor , ingrese usuario y contraseña ')),
       );
     }
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -61,5 +60,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-

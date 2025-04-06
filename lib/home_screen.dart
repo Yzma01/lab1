@@ -59,6 +59,14 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, '/ map');
               },
             ),
+            //Users
+            ListTile(
+              leading: Icon(Icons.people),
+              title: Text("Usuarios"),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/ users');
+              },
+            ),
             //Sign Out
             ListTile(
               leading: Icon(Icons.exit_to_app),

@@ -42,32 +42,36 @@ class _UserMapState extends State<UserMap> {
           ),
         ],
       ),
-      body: _userLocation == null
-          ? Center(child: CircularProgressIndicator())
-          : Column(
-              children: [
-                Expanded(
-                  child: GoogleMap(
-                    onMapCreated: (controller) {
-                      setState(() {
-                        _mapController = controller;
-                      });
-                    },
-                    initialCameraPosition: CameraPosition(
-                      target: _userLocation!,
-                      zoom: 15.0,
+      body:
+          _userLocation == null
+              ? Center(child: CircularProgressIndicator())
+              : Column(
+                children: [
+                  Expanded(
+                    child: GoogleMap(
+                      onMapCreated: (controller) {
+                        setState(() {
+                          _mapController = controller;
+                        });
+                      },
+                      initialCameraPosition: CameraPosition(
+                        target: _userLocation!,
+                        zoom: 15.0,
+                      ),
+                      markers: Set<Marker>.of(_markers),
+                      onTap: _addMarker,
                     ),
-                    markers: Set<Marker>.of(_markers),
-                    onTap: _addMarker,
                   ),
-                ),
-                if (_distanceInfo.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(_distanceInfo, style: TextStyle(fontSize: 16)),
-                  ),
-              ],
-            ),
+                  if (_distanceInfo.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        _distanceInfo,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                ],
+              ),
     );
   }
 
@@ -98,11 +102,13 @@ class _UserMapState extends State<UserMap> {
         _markers.removeAt(0);
       }
 
-      _markers.add(Marker(
-        markerId: MarkerId(position.toString()),
-        position: position,
-        infoWindow: InfoWindow(title: 'Punto seleccionado'),
-      ));
+      _markers.add(
+        Marker(
+          markerId: MarkerId(position.toString()),
+          position: position,
+          infoWindow: InfoWindow(title: 'Punto seleccionado'),
+        ),
+      );
 
       if (_markers.length == 2) {
         _calculateDistance();
@@ -134,8 +140,11 @@ class _UserMapState extends State<UserMap> {
     try {
       List<Location> locations = await locationFromAddress(query);
       if (locations.isNotEmpty) {
-        LatLng location = LatLng(locations.first.latitude, locations.first.longitude);
-        
+        LatLng location = LatLng(
+          locations.first.latitude,
+          locations.first.longitude,
+        );
+
         // 📌 **Agregar marcador y mover la cámara**
         _addMarker(location);
         _mapController?.animateCamera(CameraUpdate.newLatLngZoom(location, 15));
@@ -151,23 +160,26 @@ class _UserMapState extends State<UserMap> {
     TextEditingController controller = TextEditingController();
     return await showDialog<String>(
           context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Buscar ubicación'),
-            content: TextField(
-              controller: controller,
-              decoration: InputDecoration(hintText: 'Ingrese una dirección'),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context, ''),
-                child: Text('Cancelar'),
+          builder:
+              (context) => AlertDialog(
+                title: Text('Buscar ubicación'),
+                content: TextField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText: 'Ingrese una dirección',
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, ''),
+                    child: Text('Cancelar'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, controller.text),
+                    child: Text('Buscar'),
+                  ),
+                ],
               ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, controller.text),
-                child: Text('Buscar'),
-              ),
-            ],
-          ),
         ) ??
         '';
   }
@@ -175,16 +187,17 @@ class _UserMapState extends State<UserMap> {
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Error'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Cerrar'),
+      builder:
+          (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text(message),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('Cerrar'),
+              ),
+            ],
           ),
-        ],
-      ),
     );
   }
 }
